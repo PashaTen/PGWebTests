@@ -8,15 +8,20 @@ class RegistrationPageLocators:
     COUNTRY_LIST = (By.XPATH, '//div[@data-l="t,country"]')
     COUNTRY_ITEM = (By.XPATH, '//div[@class="country-select_code"]')
     SUBMIT_BUTTON = (By.XPATH, '//input[@data-l="t,submit"]')
-    SUPPORT_BUTTON = (By.XPATH, '//input[@data-l="t,support"]')
+    SUPPORT_BUTTON = (By.XPATH, '//*[@data-l="t,support"]')
 
 class RegistrationPageHelper(BasePage):
     def __init__(self, driver):
         self.driver = driver
+        self.check_page()
 
 
     @allure.step('Проверяем загрузку страницы регистрации')
     def check_page(self):
+        current_url = self.driver.current_url
+        if 'anonymRegistrationEnterPhone' not in current_url:
+            self.driver.get('https://ok.ru/dk?st.cmd=anonymRegistrationEnterPhone')
+
         with allure.step("Проверяем корректность загрузки страницы"):
             self.find_element(RegistrationPageLocators.PHONE_FIELD)
             self.find_element(RegistrationPageLocators.COUNTRY_LIST)

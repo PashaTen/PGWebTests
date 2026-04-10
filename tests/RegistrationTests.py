@@ -5,7 +5,7 @@ from pages.BasePage import BasePage
 from pages.LoginPage import LoginPageHelper
 from pages.RegistrationPage import RegistrationPageHelper
 
-BASE_URL = 'https://ok.ru/dk?st.cmd=anonymRegistrationEnterPhone'
+BASE_URL = 'https://ok.ru/'
 
 
 @allure.feature('Регистрация')
